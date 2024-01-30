@@ -11,25 +11,26 @@ puts "-------------------------------------------------"
 
 # Demander le prénom du joueur
 print "Entrez votre prénom : "
-player_name = gets.chomp
+human_player = gets.chomp
 
-human_player = HumanPlayer.new(player_name)
+human_player = HumanPlayer.new(human_player)
+
 
 # Afficher un message pour indiquer que le joueur a été créé
-puts "\n#{player_name}, tu es prêt(e) à affronter tes ennemis ?"
+puts "\n#{human_player.name}, tu es prêt(e) à affronter tes ennemis ?"
 
 # Créer les ennemis
-enemy1 = Player.new("Josiane")
-enemy2 = Player.new("José")
+player1 = Player.new("Josiane")
+player2 = Player.new("José")
 
 # Mettre les ennemis dans un tableau
-enemies = [enemy1, enemy2]
+enemies = [player1, player2]
 
 # Afficher un message pour indiquer que les ennemis sont prêts
 puts "\nLes ennemis sont prêts à en découdre !"
 
 # Boucle du combat
-while human_player.alive? && (enemy1.alive? || enemy2.alive?)
+while human_player.life_points >0 && (player1.life_points > 0 || player2.life_points >0)
     # Afficher l'état du HumanPlayer
     puts "\n#{human_player.show_state}"
 
@@ -38,8 +39,8 @@ while human_player.alive? && (enemy1.alive? || enemy2.alive?)
   puts "a - Chercher une meilleure arme"
   puts "s - Chercher un pack de points de vie"
   puts "Attaquer un joueur en vue :"
-  puts "0 - #{enemy1.show_state}" if enemy1.alive?
-  puts "1 - #{enemy2.show_state}" if enemy2.alive?
+  puts " 0 - #{player1.show_state}" if player1.life_points
+  puts " 1 - #{player2.show_state}" if player2.life_points
   print "> "
   choice = gets.chomp
 
@@ -50,9 +51,9 @@ while human_player.alive? && (enemy1.alive? || enemy2.alive?)
    when "s"
      human_player.search_health_pack
    when "0"
-     human_player.attacks(enemy1) if enemy1.alive?
+     human_player.attacks(player1) if player1.life_points >= 0
    when "1"
-     human_player.attacks(enemy2) if enemy2.alive?
+     human_player.attacks(player2) if player2.life_points >= 0
    else
      puts "Choix invalide. Veuillez sélectionner une action valide."
    end
@@ -62,13 +63,13 @@ while human_player.alive? && (enemy1.alive? || enemy2.alive?)
 
   # Les ennemis attaquent le HumanPlayer
   enemies.each do |enemy|
-    enemy.attacks(human_player) if enemy.alive?
+    enemy.attacks(human_player) if enemy.life_points >= 0
   end
 end
 
 # Message de fin de jeu
 puts "\nLa partie est finie !"
-if human_player.alive?
+if human_player.life_points >= 0
   puts "Bravo ! Tu as survécu !"
 else
   puts "Loser ! Tu as perdu !"
