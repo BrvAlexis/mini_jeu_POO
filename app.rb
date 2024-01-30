@@ -5,10 +5,10 @@ require_relative 'lib/game'
 require_relative 'lib/player'
 
 #À ma droite "Josiane" : crée un Player répondant à ce doux prénom et stocké dans la variable player1
-player1 = Player.new("Josiane",10)
+player1 = Player.new("Josiane")
 
 #À ma gauche "José" : crée un autre Player répondant à ce joli prénom et stocké dans la variable player2
-player2 = Player.new("José",10)
+player2 = Player.new("José")
 
 #Présentons les deux combattants : affiche dans le terminal l'état de chaque combattant grâce à des puts et des show_state. 
 #Juste avant, affiche un petit puts "Voici l'état de chaque joueur :".

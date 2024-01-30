@@ -3,9 +3,9 @@
 class Player
     attr_accessor :name, :life_points
 
-    def initialize(name, life_points)
+    def initialize(name)
         @name = name
-        @life_points = life_points
+        @life_points = 10
     end
     
     def show_state
@@ -39,13 +39,11 @@ end
 class HumanPlayer < Player
     attr_accessor :weapon_level,
 
-    def initialize(name, life_points,weapon_level)
+    def initialize(name)
     @weapon_level = 1
     @life_points = 100
     end
-        super initialize(name)
-    end
-
+       
     def show_state
         puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{weapon_level}"
     end
@@ -58,23 +56,23 @@ class HumanPlayer < Player
     def search_weapon
     #Elle va commencer par lancer un "dé" 
     #dont le résultat sera compris entre 1 et 6 (tu sais faire ça maintenant non?).
-    new_weapon_level = rand(1..6)
+        new_weapon_level = rand(1..6)
     # Annonce le résultat de la recherche à l'utilisateur en affichant un message du genre 
     #"Tu as trouvé une arme de niveau XXX".
-    puts "Tu as trouvé une arme de niveau #{new_weapon_level}."
+        puts "Tu as trouvé une arme de niveau #{new_weapon_level}."
 
     #Maintenant, cherche à savoir si ça vaut le coup pour le joueur Human Player de la garder… 
     #Utilise un if pour comparer le niveau de cette nouvelle arme avec celle qu'il possède déjà (@weapon_level)
-    if new_weapon_level > @weapon_level
+            if new_weapon_level > @weapon_level
         #Si l'arme trouvée est d'un niveau strictement supérieur, il la garde. Son @weapon_level prend alors la valeur de la nouvelle arme .
         @weapon_level = new_weapon_level
         puts "Youhou ! Elle est meilleure que ton arme actuelle : tu la prends."
 
         #Si l'arme trouvée est égale ou moins bien que son arme actuelle,
         # tu ne changes rien et ne fais qu'afficher un petit "M@*#$... elle n'est pas mieux que ton arme actuelle..."
-    else
+            else
         puts "M@*#$... Elle n'est pas mieux que ton arme actuelle..."
-      end
+            end
     end
 
     def search_health_pack
@@ -100,12 +98,5 @@ class HumanPlayer < Player
           @life_points += heal_points
           "Waow, tu as trouvé un pack de +#{heal_points} points de vie !"
         end
-      end
-
-    
-
-
-
-
-
+    end
 end
