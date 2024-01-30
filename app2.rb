@@ -37,7 +37,7 @@ while human_player.life_points >0 && (player1.life_points > 0 || player2.life_po
     # Menu d'actions pour le joueur
   puts "\nQuelle action veux-tu effectuer ?"
   puts "a - Chercher une meilleure arme"
-  puts "s - Chercher un pack de points de vie"
+  puts "s - Chercher à se soigner"
   puts "Attaquer un joueur en vue :"
   puts " 0 - #{player1.show_state}" if player1.life_points
   puts " 1 - #{player2.show_state}" if player2.life_points
